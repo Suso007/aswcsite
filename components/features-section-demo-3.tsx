@@ -44,20 +44,20 @@ export function FeaturesSectionDemo() {
       icon: <IconAdjustmentsBolt />,
     },
     {
-      title: "Free Home Delivery",
-      description: "Safe and secure delivery to your doorstep with insurance coverage.",
+      title: "Heritage Since 1908",
+      description: "Over a century of excellence in timepiece expertise and service.",
       icon: <IconTruck />,
     },
     {
-      title: "24/7 Customer Support",
+      title: "Personalized Consultation",
       description:
-        "Round-the-clock assistance for all your watch-related queries and support.",
+        "Expert guidance to help you choose the perfect timepiece for your style.",
       icon: <IconHeadphones />,
     },
     {
-      title: "Lifetime Service Warranty",
+      title: "Time Recording Pioneer",
       description:
-        "Comprehensive after-sales service and lifetime maintenance support.",
+        "First company to introduce time recording and attendance systems in India.",
       icon: <IconShield />,
     },
     {

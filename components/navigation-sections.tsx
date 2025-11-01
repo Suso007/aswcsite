@@ -13,7 +13,7 @@ const navigationSections = [
     id: 1,
     title: "Premium Watches",
     description: "Premium timepieces from world-renowned brands",
-    image: "/categories/premium-watch.JPG",
+    image: "/categories/premium-watch.jpg",
     icon: Watch,
     badge: "Premium",
     href: "/watch/premium"

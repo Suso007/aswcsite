@@ -1,9 +1,23 @@
+''
+"use client";
+
 import Link from "next/link"
 import { Clock, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
+
+const socialLinks = {
+  facebook: "https://www.facebook.com/angloswisswatchco",
+  twitter: "https://twitter.com/angloswisswatch",
+  instagram: "https://www.instagram.com/angloswisswatchco",
+  youtube: "https://www.youtube.com/@angloswisswatchco"
+};
+
+const handleSocialClick = (platform: keyof typeof socialLinks) => {
+  window.open(socialLinks[platform], '_blank', 'noopener,noreferrer');
+};
 
 export function Footer() {
   return (
@@ -26,16 +40,40 @@ export function Footer() {
             </div>
 
             <div className="flex space-x-2">
-              <Button variant="outline" size="icon" className="cursor-pointer">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="cursor-pointer"
+                onClick={() => handleSocialClick('facebook')}
+                aria-label="Visit our Facebook page"
+              >
                 <Facebook className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="icon" className="cursor-pointer">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="cursor-pointer"
+                onClick={() => handleSocialClick('twitter')}
+                aria-label="Visit our Twitter page"
+              >
                 <Twitter className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="icon" className="cursor-pointer">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="cursor-pointer"
+                onClick={() => handleSocialClick('instagram')}
+                aria-label="Visit our Instagram page"
+              >
                 <Instagram className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="icon" className="cursor-pointer">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="cursor-pointer"
+                onClick={() => handleSocialClick('youtube')}
+                aria-label="Visit our YouTube channel"
+              >
                 <Youtube className="h-4 w-4" />
               </Button>
             </div>
@@ -122,17 +160,17 @@ export function Footer() {
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-muted-foreground" />
                 <span className="text-muted-foreground">
-                  123 Timekeeper Avenue<br />
-                  London, UK W1K 1AA
+                  6, Binoy Badal Dinesh Bag E, B.B.D. Bagh<br />
+                  West Bengal 700001, India
                 </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-muted-foreground" />
-                <span className="text-muted-foreground">+44 20 7123 4567</span>
+                <span className="text-muted-foreground">033-22300295</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-muted-foreground" />
-                <span className="text-muted-foreground">info@angloswisswatchco.com</span>
+                <span className="text-muted-foreground">info@angloswiss.in</span>
               </div>
             </div>
             
