@@ -20,6 +20,7 @@ import {
   Zap
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -473,13 +474,17 @@ export default function BrandsPage() {
                 are ready to help you find the perfect watch that matches your style and requirements.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
                 <Button size="lg" className="px-8">
                   Visit Our Showroom
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
+              </Link>
+              <Link href="/contact">
                 <Button size="lg" variant="outline" className="px-8">
                   Schedule Consultation
                 </Button>
+              </Link>
               </div>
             </div>
           </motion.div>

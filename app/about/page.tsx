@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Clock, Award, Users, Globe, Heart, Shield, Star, Target, CheckCircle, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { LayoutGridDemo } from "@/components/about-gallery";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -639,13 +640,17 @@ export default function AboutPage() {
               for timepiece enthusiasts for over a century.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8">
-                Visit Our Showroom
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="px-8">
-                Schedule Consultation
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" className="px-8">
+                  Visit Our Showroom
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button size="lg" variant="outline" className="px-8">
+                  Schedule Consultation
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

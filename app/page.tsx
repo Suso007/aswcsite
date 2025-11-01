@@ -4,6 +4,7 @@ import { NavigationSections } from "@/components/navigation-sections";
 import { LayoutGridDemo } from "@/components/home-gallery";
 import {FeaturesSectionDemo} from "@/components/features-section-demo-3";
 import HeroSection from "@/components/hero";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -26,8 +27,12 @@ export default function Home() {
             Visit our showroom or schedule a consultation with our experts
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg">Visit Showroom</Button>
-            <Button size="lg" variant="outline">Schedule Consultation</Button>
+            <Link href="/contact">
+              <Button size="lg">Visit Showroom</Button>
+            </Link>
+            <Link href="/contact">
+              <Button size="lg" variant="outline">Schedule Consultation</Button>
+            </Link>
           </div>
         </div>
       </section>
