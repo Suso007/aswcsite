@@ -8,7 +8,7 @@ import { useRef } from 'react'
 
 const heroImages = [
   { src: '/hero/seiko1.jpg', height: 'h-75' },
-  { src: '/hero/clock1.WEBP', height: 'h-65' },
+  { src: '/hero/clock1.jpg', height: 'h-65' },
   { src: '/hero/tissot1.jpg', height: 'h-83' },
   { src: '/hero/tower1.jpg', height: 'h-90' },
   { src: '/hero/clock2.jpg', height: 'h-65' },
