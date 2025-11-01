@@ -1,8 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Clock, Zap, Shield, Award } from "lucide-react";
-import { HeroComponent} from "@/components/hero-component";
 import { BrandsShowcase } from "@/components/brands-showcase";
 import { NavigationSections } from "@/components/navigation-sections";
 import { LayoutGridDemo } from "@/components/home-gallery";
