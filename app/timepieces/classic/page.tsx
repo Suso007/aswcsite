@@ -119,7 +119,7 @@ export default function ClassicTimepiecesPage() {
               className="relative h-[500px] rounded-2xl overflow-hidden"
             >
               <Image
-                src="/categories/time-pieces.JPG"
+                src="/categories/time-pieces.jpg"
                 alt="Classic Timepiece"
                 fill
                 className="object-cover"

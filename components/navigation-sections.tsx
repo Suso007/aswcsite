@@ -40,7 +40,7 @@ const navigationSections = [
     id: 4,
     title: "Classic Timepieces",
     description: "Timeless designs that never go out of style",
-    image: "/categories/time-pieces.JPG",
+    image: "/categories/time-pieces.jpg",
     icon: Clock,
     badge: "Classic",
     href: "/timepieces/classic"
@@ -49,7 +49,7 @@ const navigationSections = [
     id: 5,
     title: "Tower Clocks",
     description: "Monumental timepieces for architectural excellence",
-    image: "/categories/tower-cloc.JPG",
+    image: "/categories/tower-cloc.jpg",
     icon: Building2,
     badge: "Architecture",
     href: "timepieces/tower-clocks"
@@ -68,7 +68,7 @@ const navigationSections = [
     id: 7,
     title: "Access Control Systems",
     description: "Secure and manage access to your timepieces",
-    image: "/categories/access-control.JPEG",
+    image: "/categories/access-control.jpeg",
     icon: Star,
     badge: "Custom",
     href: "/access-control"
@@ -77,7 +77,7 @@ const navigationSections = [
     id: 8,
     title: "Watch Repair",
     description: "Expert repair services for all watch brands",
-    image: "/categories/repair.PNG",
+    image: "/categories/repair.png",
     icon: Wrench,
     badge: "Service",
     href: "/services/repair"

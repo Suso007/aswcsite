@@ -119,7 +119,7 @@ export default function PremiumWatchesPage() {
               className="relative h-[500px] rounded-2xl overflow-hidden"
             >
               <Image
-                src="/categories/premium-watch.JPG"
+                src="/categories/premium-watch.jpg"
                 alt="Premium Watch"
                 fill
                 className="object-cover"
