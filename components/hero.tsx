@@ -2,9 +2,8 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { BackgroundBeams } from './ui/background-beams'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { useRef } from 'react'
 
 const heroImages = [
   { src: '/hero/seiko1.jpg', height: 'h-75' },
@@ -17,54 +16,19 @@ const heroImages = [
 ];
 
 const HeroSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  // Pre-calculate all transforms for desktop (7 images)
-  const desktopTransforms = heroImages.map((_, index) => {
-    const middle = (heroImages.length - 1) / 2;
-    const direction = index < middle ? -1 : index > middle ? 1 : 0;
-    const distance = Math.abs(index - middle) * 150;
-    
-    return {
-      x: useTransform(scrollYProgress, [0, 1], [0, direction * distance]),
-      y: useTransform(scrollYProgress, [0, 1], [0, 100]),
-      opacity: useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.3]),
-      scale: useTransform(scrollYProgress, [0, 1], [1, 0.8]),
-      rotate: useTransform(scrollYProgress, [0, 1], [0, direction * 15])
-    };
-  });
-
-  // Pre-calculate all transforms for mobile (3 images)
-  const mobileTransforms = [0, 1, 2].map((index) => {
-    const middle = 1; // middle of 3 images (0, 1, 2)
-    const direction = index < middle ? -1 : index > middle ? 1 : 0;
-    const distance = Math.abs(index - middle) * 80;
-    
-    return {
-      x: useTransform(scrollYProgress, [0, 1], [0, direction * distance]),
-      y: useTransform(scrollYProgress, [0, 1], [0, 50]),
-      opacity: useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.3]),
-      scale: useTransform(scrollYProgress, [0, 1], [1, 0.9]),
-      rotate: useTransform(scrollYProgress, [0, 1], [0, direction * 8])
-    };
-  });
 
   return (
-    <section ref={sectionRef} className='flex min-h-[calc(100dvh-4rem)] flex-1 flex-col justify-between gap-12 overflow-x-hidden pt-8 sm:gap-16 sm:pt-16 lg:gap-24 lg:pt-24'>
+    <section className='flex min-h-[calc(100dvh-4rem)] flex-1 flex-col justify-between gap-12 overflow-x-hidden pt-8 sm:gap-16 sm:pt-16 lg:gap-24 lg:pt-24'>
       {/* Hero Content */}
       <div className='mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 text-center sm:px-6 lg:px-8'>
         <motion.div 
-          className='bg-muted flex items-center gap-2.5 rounded-full border px-3 py-2'
+          className='bg-muted flex items-center gap-3 rounded-full border px-4 py-2.5'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Badge className='rounded-full'>anglo swiss watch co.</Badge>
-          <span className='text-muted-foreground'>Excellence Since 1908</span>
+          <Badge className='rounded-full font-[century-gothic] text-lg px-3 py-1'>anglo swiss watch co.</Badge>
+          <span className='text-muted-foreground text-lg'>Excellence Since 1908</span>
         </motion.div>
 
         <motion.h1 
@@ -144,26 +108,17 @@ const HeroSection = () => {
         <div className='mx-auto'>
           <div className='grid grid-cols-7 gap-3 md:gap-4 items-end'>
             {heroImages.map((image, index) => {
-              const transforms = desktopTransforms[index];
-              
               return (
                 <motion.div
                   key={index}
                   className={`relative ${image.height} w-full overflow-hidden rounded-lg shadow-lg group`}
-                  initial={{ opacity: 0, y: 100, scale: 0.8 }}
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ 
                     duration: 0.8, 
                     delay: index * 0.1,
                     ease: [0.25, 0.46, 0.45, 0.94]
-                  }}
-                  style={{
-                    x: transforms.x,
-                    y: transforms.y,
-                    opacity: transforms.opacity,
-                    scale: transforms.scale,
-                    rotate: transforms.rotate
                   }}
                   whileHover={{ 
                     y: -10,
@@ -190,26 +145,17 @@ const HeroSection = () => {
         <div className='mx-auto'>
           <div className='grid grid-cols-3 gap-3 items-end'>
             {heroImages.slice(0, 3).map((image, index) => {
-              const transforms = mobileTransforms[index];
-              
               return (
                 <motion.div
                   key={index}
                   className={`relative h-48 w-full overflow-hidden rounded-lg shadow-md group`}
-                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{ 
                     duration: 0.6, 
                     delay: index * 0.08,
                     ease: [0.25, 0.46, 0.45, 0.94]
-                  }}
-                  style={{
-                    x: transforms.x,
-                    y: transforms.y,
-                    opacity: transforms.opacity,
-                    scale: transforms.scale,
-                    rotate: transforms.rotate
                   }}
                 >
                   <Image

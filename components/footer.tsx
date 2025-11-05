@@ -36,7 +36,7 @@ export function Footer() {
                               className="w-auto transition-all duration-300 ease-in-out h-10"
                               priority
                             />
-              <span className="text-xl font-bold text-foreground">Anglo Swiss Watch Co.</span>
+              <span className="text-2xl font-bold font-[century-gothic] text-foreground">anglo swiss watch co.</span>
             </div>
 
             <div className="flex space-x-2">
@@ -166,7 +166,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-muted-foreground" />
-                <span className="text-muted-foreground">033-22300295</span>
+                <span className="text-muted-foreground">033-22300295 / 22847116</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-muted-foreground" />
@@ -198,7 +198,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-muted-foreground">
-            <span>© 2024 Anglo Swiss Watch Co. All rights reserved.</span>
+            <span>{`© ${new Date().getFullYear()} anglo swiss watch co. All rights reserved.`}</span>
             <div className="flex space-x-4">
               <Link href="/privacy" className="hover:text-foreground transition-colors">
                 Privacy Policy
@@ -215,13 +215,13 @@ export function Footer() {
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <span>Authorized dealer for:</span>
             <div className="flex space-x-2 font-medium text-foreground">
-              <span>Rolex</span>
+              <span>TIMEX</span>
               <span>•</span>
-              <span>Omega</span>
+              <span>CASIO</span>
               <span>•</span>
-              <span>Seiko</span>
+              <span>SEIKO</span>
               <span>•</span>
-              <span>Tissot</span>
+              <span>TISSOT</span>
             </div>
           </div>
         </div>

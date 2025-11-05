@@ -22,7 +22,7 @@ export function BrandsShowcase() {
           <InfiniteMovingCards
             items={brands}
             direction="left"
-            speed="fast"
+            speed="normal"
           />
         </div>
       </div>

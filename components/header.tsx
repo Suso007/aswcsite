@@ -87,6 +87,18 @@ const products = [
     description: "Advanced systems for workforce time management",
     section: "Access Control",
   },
+    {
+    title: "Premium Pens", 
+    href: "/pens",
+    description: "Luxury writing instruments for the discerning individual",
+    section: "Accessories",
+  },
+  {
+    title: "Premium Perfumes",
+    href: "/perfumes",
+    description: "Luxury fragrances for every occasion",
+    section: "Accessories",
+  },
 ]
 
 const services = [
@@ -191,7 +203,7 @@ export function Header() {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Products</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[800px] gap-6 p-6 md:grid-cols-3">
+                  <div className="grid w-[800px] gap-6 p-6 md:grid-cols-4">
                     {/* Dynamically generate sections */}
                     {Array.from(new Set(products.map(p => p.section))).map((section) => (
                       <div key={section} className="space-y-3">
