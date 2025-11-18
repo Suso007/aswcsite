@@ -1,5 +1,7 @@
 "use client";
 
+import * as React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -130,6 +132,44 @@ const stats = [
 ];
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    contact: '',
+    type: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      setSubmitStatus('success');
+      setFormData({ name: '', contact: '', type: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -327,48 +367,101 @@ export default function ContactPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-foreground">
-                      Full Name *
-                    </label>
-                    <Input id="name" placeholder="Your name" />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-foreground">
-                      Email *
-                    </label>
-                    <Input id="email" type="email" placeholder="your.email@example.com" />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="department" className="text-sm font-medium text-foreground">
-                      Department
-                    </label>
-                    <select className="w-full px-3 py-2 border border-input bg-background rounded-md text-sm">
-                      <option value="">Select Department</option>
-                      <option value="watch-sales">Watch Sales</option>
-                      <option value="watch-repair">Watch Repair</option>
-                      <option value="biometric">Biometric & Access Control</option>
-                      <option value="general">General Inquiry</option>
-                    </select>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-foreground">
-                      Message *
-                    </label>
-                    <Textarea
-                      id="message"
-                      placeholder="Your message..."
-                      className="min-h-24"
-                    />
-                  </div>
-                  
-                  <Button size="sm" className="w-full">
-                    <Send className="w-3 h-3 mr-2" />
-                    Send Message
-                  </Button>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium text-foreground">
+                        Full Name *
+                      </label>
+                      <Input 
+                        id="name" 
+                        placeholder="Your name" 
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                        suppressHydrationWarning
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="contact" className="text-sm font-medium text-foreground">
+                        Contact *
+                      </label>
+                      <Input 
+                        id="contact" 
+                        type="tel" 
+                        placeholder="Your contact number"
+                        value={formData.contact}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                        suppressHydrationWarning
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="type" className="text-sm font-medium text-foreground">
+                        Department
+                      </label>
+                      <select 
+                        id="type"
+                        className="w-full px-3 py-2 border border-input bg-background rounded-md text-sm"
+                        value={formData.type}
+                        onChange={handleInputChange}
+                        disabled={isSubmitting}
+                        suppressHydrationWarning
+                      >
+                        <option value="">Select Department</option>
+                        <option value="watch-sales">Watch Sales</option>
+                        <option value="watch-repair">Watch Repair</option>
+                        <option value="biometric">Biometric & Access Control</option>
+                        <option value="general">General Inquiry</option>
+                      </select>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium text-foreground">
+                        Message *
+                      </label>
+                      <Textarea
+                        id="message"
+                        placeholder="Your message..."
+                        className="min-h-24"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                    
+                    {submitStatus === 'success' && (
+                      <div className="p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
+                        <p className="text-sm text-green-800 dark:text-green-200 flex items-center">
+                          <CheckCircle className="w-4 h-4 mr-2" />
+                          Message sent successfully! We'll get back to you soon.
+                        </p>
+                      </div>
+                    )}
+                    
+                    {submitStatus === 'error' && (
+                      <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+                        <p className="text-sm text-red-800 dark:text-red-200">
+                          Failed to send message. Please try again or contact us directly.
+                        </p>
+                      </div>
+                    )}
+                    
+                    <Button type="submit" size="sm" className="w-full" disabled={isSubmitting} suppressHydrationWarning>
+                      {isSubmitting ? (
+                        <>Processing...</>
+                      ) : (
+                        <>
+                          <Send className="w-3 h-3 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </form>
                 </CardContent>
               </Card>
             </motion.div>

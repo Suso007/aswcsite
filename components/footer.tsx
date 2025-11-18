@@ -36,7 +36,7 @@ export function Footer() {
                               className="w-auto transition-all duration-300 ease-in-out h-10"
                               priority
                             />
-              <span className="text-2xl font-bold font-[century-gothic] text-foreground">anglo swiss watch co.</span>
+              <span className="text-2xl font-bold font-outfit text-foreground">anglo-swiss watch co.</span>
             </div>
 
             <div className="flex space-x-2">
@@ -46,6 +46,7 @@ export function Footer() {
                 className="cursor-pointer"
                 onClick={() => handleSocialClick('facebook')}
                 aria-label="Visit our Facebook page"
+                suppressHydrationWarning
               >
                 <Facebook className="h-4 w-4" />
               </Button>
@@ -55,6 +56,7 @@ export function Footer() {
                 className="cursor-pointer"
                 onClick={() => handleSocialClick('twitter')}
                 aria-label="Visit our Twitter page"
+                suppressHydrationWarning
               >
                 <Twitter className="h-4 w-4" />
               </Button>
@@ -64,6 +66,7 @@ export function Footer() {
                 className="cursor-pointer"
                 onClick={() => handleSocialClick('instagram')}
                 aria-label="Visit our Instagram page"
+                suppressHydrationWarning
               >
                 <Instagram className="h-4 w-4" />
               </Button>
@@ -73,6 +76,7 @@ export function Footer() {
                 className="cursor-pointer"
                 onClick={() => handleSocialClick('youtube')}
                 aria-label="Visit our YouTube channel"
+                suppressHydrationWarning
               >
                 <Youtube className="h-4 w-4" />
               </Button>
@@ -184,8 +188,9 @@ export function Footer() {
                   type="email" 
                   placeholder="Enter your email" 
                   className="text-xs"
+                  suppressHydrationWarning
                 />
-                <Button size="sm">Subscribe</Button>
+                <Button size="sm" suppressHydrationWarning>Subscribe</Button>
               </div>
             </div>
           </div>
@@ -212,17 +217,16 @@ export function Footer() {
             </div>
           </div>
           
-          <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-            <span>Authorized dealer for:</span>
-            <div className="flex space-x-2 font-medium text-foreground">
-              <span>TIMEX</span>
-              <span>•</span>
-              <span>CASIO</span>
-              <span>•</span>
-              <span>SEIKO</span>
-              <span>•</span>
-              <span>TISSOT</span>
-            </div>
+          <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+            <span>Designed & Developed by</span>
+            <Link 
+              href="https://inrec.in" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
+            >
+              Inrec Productive Research Solutions...
+            </Link>
           </div>
         </div>
       </div>

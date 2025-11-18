@@ -20,13 +20,13 @@ export default function PremiumWatchesPage() {
     },
     {
       icon: Award,
-      title: "Swiss Movement",
-      description: "Precision Swiss automatic and mechanical movements"
+      title: "Master Craftsmanship",
+      description: "Handcrafted by skilled artisans with decades of expertise"
     },
     {
       icon: Shield,
-      title: "Lifetime Warranty",
-      description: "Comprehensive warranty and authentication certificate"
+      title: "Authentic Certification",
+      description: "Complete documentation and authenticity guarantee included"
     },
     {
       icon: Star,

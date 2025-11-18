@@ -27,7 +27,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Badge className='rounded-full font-[century-gothic] text-lg px-3 py-1'>anglo swiss watch co.</Badge>
+          <Badge className='rounded-full font-outfit text-lg px-3 py-1'>anglo-swiss watch co.</Badge>
           <span className='text-muted-foreground text-lg'>Excellence Since 1908</span>
         </motion.div>
 

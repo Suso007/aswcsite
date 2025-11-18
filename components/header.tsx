@@ -73,7 +73,7 @@ const products = [
     title: "Tower Clocks",
     href: "/timepieces/tower-clocks",
     description: "Monumental timepieces for architectural excellence",
-    section: "Timepieces",
+    section: "Tower Clocks",
   },
   {
     title: "Access Control Systems", 
@@ -114,11 +114,40 @@ const services = [
   },
 ]
 
+const solutions = [
+  {
+    title: "Attendance Management",
+    href: "/solutions/attendance-management",
+    description: "Custom software solutions for efficient workforce attendance tracking",
+  },
+  {
+    title: "Hostel Management",
+    href: "/solutions/hostel-management",
+    description: "Comprehensive hostel management system for seamless operations",
+  },
+  {
+    title: "Canteen Management",
+    href: "/solutions/canteen-management",
+    description: "Streamlined canteen operations with automated billing and inventory",
+  },
+  {
+    title: "Payroll Management",
+    href: "/solutions/payroll-management",
+    description: "Automated payroll processing and employee compensation management",
+  },
+  {
+    title: "Custom Software Solutions",
+    href: "/solutions/custom-solutions",
+    description: "Tailored software solutions designed for your specific business needs",
+  },
+]
+
 export function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [expandedMenus, setExpandedMenus] = React.useState<{[key: string]: boolean}>({
     products: false,
-    services: false
+    services: false,
+    solutions: false,
   })
   const [dialogOpen, setDialogOpen] = React.useState(false)
   const [redirectType, setRedirectType] = React.useState<'account' | 'cart'>('account')
@@ -200,10 +229,11 @@ export function Header() {
                   Home
                 </Link>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Products</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[800px] gap-6 p-6 md:grid-cols-4">
+                  <div className="grid w-[800px] gap-6 p-6 md:grid-cols-5">
                     {/* Dynamically generate sections */}
                     {Array.from(new Set(products.map(p => p.section))).map((section) => (
                       <div key={section} className="space-y-3">
@@ -234,6 +264,23 @@ export function Header() {
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1">
                     {services.map((service) => (
+                      <ListItem
+                        key={service.title}
+                        title={service.title}
+                        href={service.href}
+                      >
+                        {service.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Solutions</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1">
+                    {solutions.map((service) => (
                       <ListItem
                         key={service.title}
                         title={service.title}
@@ -281,19 +328,19 @@ export function Header() {
             </div>
 
             {/* Action Buttons */}
-            <Button variant="ghost" size="icon" className="md:hidden">
+            <Button variant="ghost" size="icon" className="md:hidden" suppressHydrationWarning>
               <Search className="h-5 w-5" />
               <span className="sr-only">Search</span>
             </Button>
 
             <ThemeToggle />
 
-            <Button variant="ghost" size="icon" onClick={() => handleShopifyRedirect('account')}>
+            <Button variant="ghost" size="icon" onClick={() => handleShopifyRedirect('account')} suppressHydrationWarning>
               <User className="h-5 w-5" />
               <span className="sr-only">Account</span>
             </Button>
 
-            <Button variant="ghost" size="icon" onClick={() => handleShopifyRedirect('cart')}>
+            <Button variant="ghost" size="icon" onClick={() => handleShopifyRedirect('cart')} suppressHydrationWarning>
               <ShoppingCart className="h-5 w-5" />
               <span className="sr-only">Cart</span>
             </Button>
@@ -322,12 +369,12 @@ export function Header() {
                   {/* Navigation Content */}
                   <div className="flex-1 overflow-auto px-6 py-6">
                     <nav className="space-y-2">
-                      {/* Main Navigation Links */}
-                      <div className="space-y-1 mb-6">
+                      {/* Products Section - Collapsible */}
+                      <div className="space-y-1">
                         <h4 className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                           Menu
                         </h4>
-                        
+
                         <Link
                           href="/"
                           onClick={() => setMobileMenuOpen(false)}
@@ -345,69 +392,6 @@ export function Header() {
                             </Badge>
                           )}
                         </Link>
-
-                        <Link
-                          href="/brands"
-                          onClick={() => setMobileMenuOpen(false)}
-                          className={cn(
-                            "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group",
-                            isActivePath("/brands")
-                              ? "bg-primary text-primary-foreground shadow-sm"
-                              : "hover:bg-accent hover:text-accent-foreground"
-                          )}
-                        >
-                          <span>Brands</span>
-                          {isActivePath("/brands") && (
-                            <Badge variant="secondary" className="ml-2 px-1.5 py-0.5 text-xs">
-                              Active
-                            </Badge>
-                          )}
-                        </Link>
-
-                        <Link
-                          href="/about"
-                          onClick={() => setMobileMenuOpen(false)}
-                          className={cn(
-                            "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group",
-                            isActivePath("/about")
-                              ? "bg-primary text-primary-foreground shadow-sm"
-                              : "hover:bg-accent hover:text-accent-foreground"
-                          )}
-                        >
-                          <span>About Us</span>
-                          {isActivePath("/about") && (
-                            <Badge variant="secondary" className="ml-2 px-1.5 py-0.5 text-xs">
-                              Active
-                            </Badge>
-                          )}
-                        </Link>
-
-                        <Link
-                          href="/contact"
-                          onClick={() => setMobileMenuOpen(false)}
-                          className={cn(
-                            "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group",
-                            isActivePath("/contact")
-                              ? "bg-primary text-primary-foreground shadow-sm"
-                              : "hover:bg-accent hover:text-accent-foreground"
-                          )}
-                        >
-                          <span>Contact</span>
-                          {isActivePath("/contact") && (
-                            <Badge variant="secondary" className="ml-2 px-1.5 py-0.5 text-xs">
-                              Active
-                            </Badge>
-                          )}
-                        </Link>
-                      </div>
-
-                      <Separator className="my-4" />
-
-                      {/* Products Section - Collapsible */}
-                      <div className="space-y-1">
-                        <h4 className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                          Collections
-                        </h4>
                         
                         <Collapsible 
                           open={expandedMenus.products} 
@@ -495,6 +479,104 @@ export function Header() {
                             </div>
                           </CollapsibleContent>
                         </Collapsible>
+
+                        <Collapsible 
+                          open={expandedMenus.solutions} 
+                          onOpenChange={(open) => setExpandedMenus(prev => ({...prev, solutions: open}))}
+                        >
+                          <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-200 group">
+                            <span>Solutions</span>
+                            <div className="flex items-center gap-2">
+                              {expandedMenus.solutions ? (
+                                <ChevronDown className="h-4 w-4 text-muted-foreground group-hover:text-accent-foreground" />
+                              ) : (
+                                <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-accent-foreground" />
+                              )}
+                            </div>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent className="space-y-1 mt-1">
+                            <div className="ml-3 space-y-1 border-l border-border/50 pl-3">
+                              {solutions.map((solution) => (
+                                <Link
+                                  key={solution.title}
+                                  href={solution.href}
+                                  onClick={() => setMobileMenuOpen(false)}
+                                  className={cn(
+                                    "flex flex-col space-y-1 rounded-md px-3 py-2 transition-all duration-200",
+                                    isActivePath(solution.href)
+                                      ? "bg-primary/10 text-primary border border-primary/20"
+                                      : "hover:bg-accent/50 hover:text-accent-foreground"
+                                  )}
+                                >
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm font-medium">{solution.title}</span>
+                                    {isActivePath(solution.href) && (
+                                      <div className="h-2 w-2 bg-primary rounded-full" />
+                                    )}
+                                  </div>
+                                  <span className="text-xs text-muted-foreground line-clamp-2">
+                                    {solution.description}
+                                  </span>
+                                </Link>
+                              ))}
+                            </div>
+                          </CollapsibleContent>
+                        </Collapsible>
+
+                        <Link
+                          href="/brands"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={cn(
+                            "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group",
+                            isActivePath("/brands")
+                              ? "bg-primary text-primary-foreground shadow-sm"
+                              : "hover:bg-accent hover:text-accent-foreground"
+                          )}
+                        >
+                          <span>Brands</span>
+                          {isActivePath("/brands") && (
+                            <Badge variant="secondary" className="ml-2 px-1.5 py-0.5 text-xs">
+                              Active
+                            </Badge>
+                          )}
+                        </Link>
+
+                        <Link
+                          href="/about"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={cn(
+                            "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group",
+                            isActivePath("/about")
+                              ? "bg-primary text-primary-foreground shadow-sm"
+                              : "hover:bg-accent hover:text-accent-foreground"
+                          )}
+                        >
+                          <span>About Us</span>
+                          {isActivePath("/about") && (
+                            <Badge variant="secondary" className="ml-2 px-1.5 py-0.5 text-xs">
+                              Active
+                            </Badge>
+                          )}
+                        </Link>
+
+                        <Link
+                          href="/contact"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={cn(
+                            "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 group",
+                            isActivePath("/contact")
+                              ? "bg-primary text-primary-foreground shadow-sm"
+                              : "hover:bg-accent hover:text-accent-foreground"
+                          )}
+                        >
+                          <span>Contact</span>
+                          {isActivePath("/contact") && (
+                            <Badge variant="secondary" className="ml-2 px-1.5 py-0.5 text-xs">
+                              Active
+                            </Badge>
+                          )}
+                        </Link>
+
                       </div>
                     </nav>
                   </div>

@@ -28,10 +28,10 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
-              <Button size="lg">Visit Showroom</Button>
+              <Button size="lg" suppressHydrationWarning>Visit Showroom</Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline">Schedule Consultation</Button>
+              <Button size="lg" variant="outline" suppressHydrationWarning>Schedule Consultation</Button>
             </Link>
           </div>
         </div>
